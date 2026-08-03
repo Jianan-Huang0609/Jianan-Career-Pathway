@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>黄佳楠 · Huang JiaNan — Career Pathway</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+
+<nav class="nav" id="nav">
+  <div class="progress-bar" id="progressBar"></div>
+  <div class="nav-inner">
+    <span class="nav-title">HJN<span class="nav-title-dot">.</span></span>
+    <div class="nav-links">
+      <a href="#about" data-i18n="nav.about">关于我</a>
+      <a href="#timeline" data-i18n="nav.timeline">履历</a>
+      <a href="#skills" data-i18n="nav.skills">能力</a>
+      <a href="#portfolio" data-i18n="nav.portfolio">作品集</a>
+      <a href="#projects" data-i18n="nav.projects">项目</a>
+    </div>
+    <button id="langToggle" class="lang-btn" onclick="toggleLang()">EN</button>
+  </div>
+</nav>
+
+<section class="module hero" id="about" style="background: var(--color-bg)">
+  <div class="module-content hero-content">
+    <p class="hero-kicker animate-in" data-i18n="hero.kicker">Regulatory Affairs → AI Product</p>
+    <h1 class="hero-name animate-in">黄佳楠</h1>
+    <p class="hero-name-en animate-in">Huang JiaNan</p>
+    <p class="hero-role animate-in" data-i18n="hero.role">AI Product Owner · 从法规注册走出来的产品人</p>
+    <p class="hero-tagline animate-in" data-i18n="hero.tagline">主动承担、快速学习、调动资源、用 AI 解决真实问题——把每一件事做成系统，再复制到下一个场景。</p>
+    <div class="hero-meta animate-in">
+      <span>📍 Shanghai, China</span>
+      <span class="meta-sep">·</span>
+      <span>🏢 Siemens Healthineers · SSME</span>
+      <span class="meta-sep">·</span>
+      <span>📅 Since Jan 2024</span>
+    </div>
+  </div>
+</section>
+
+<section class="module" id="timeline" style="background: var(--color-bg-alt)">
+  <div class="module-content">
+    <header class="module-header animate-in stagger-children">
+      <span class="module-number">01</span>
+      <h1 class="module-title" data-i18n="timeline.title">履历</h1>
+      <p class="module-subtitle" data-i18n="timeline.sub">进入 SSME 以来的三年，三个阶段，每一段都为下一段蓄能。</p>
+    </header>
+
+    <div class="timeline">
+      <div class="tl-item animate-in">
+        <div class="tl-head">
+          <span class="tl-date">2024.01 – 2024.06</span>
+          <span class="tl-badge" data-i18n="timeline.phase1">基础事务期</span>
+        </div>
+        <h2 class="tl-title" data-i18n="timeline.t1">入职 SSME · 领馆认证项目落地</h2>
+        <p class="tl-desc" data-i18n="timeline.d1">法规注册方向维护管理。上半年核心任务是领馆认证项目——跨多方协作、严格文件流程，在"众所周知的困难条件下"拿到公证文件，推动 CDSCO 获批、Multix 系列印度交付启动。考验沟通、快速学习、责任心与细心。</p>
+      </div>
+
+      <div class="tl-item animate-in">
+        <div class="tl-head">
+          <span class="tl-date">2024.07 – 2025.04</span>
+          <span class="tl-badge" data-i18n="timeline.phase2">全流程 RA 注册</span>
+        </div>
+        <h2 class="tl-title" data-i18n="timeline.t2">MP 框架 RA 注册 · 从协助到主导</h2>
+        <p class="tl-desc" data-i18n="timeline.d2">主动申请去 BU，从第一个 case 协助到第二、三个 case 主导：型测、RA 注册文档、项目管理、应审、发补修改、顺利拿证。高光：user error case 用 LLM 逐篇分析百篇文献，一两周工作量压缩到 2 天，药监未发补。</p>
+      </div>
+
+      <div class="tl-item animate-in">
+        <div class="tl-head">
+          <span class="tl-date">2025.05 – 至今</span>
+          <span class="tl-badge" data-i18n="timeline.phase3">AIPO 身份转变</span>
+        </div>
+        <h2 class="tl-title" data-i18n="timeline.t3">AI 觉醒 → PoC → 被看见 → 产品化</h2>
+        <p class="tl-desc" data-i18n="timeline.d3">拓展 CT 板块（光子注册学习 + DCU 后市场一年）蓄能；业余组 AI 学习团队（软件+硬件+黑客松）；2025.06 做 PoC（一致性核查/法规解析/模板生成），被老板看到；2025.11 惊艳 HQT 团队并约定分工（我们 CER，他们 PTR/IFU）。2026 年起以项目经理、产品经理、核心开发身份运作。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="module" id="skills" style="background: var(--color-bg)">
+  <div class="module-content">
+    <header class="module-header animate-in">
+      <span class="module-number">02</span>
+      <h1 class="module-title" data-i18n="skills.title">能力</h1>
+      <p class="module-subtitle" data-i18n="skills.sub">这些能力是一条线：主动承担 → 快速学习 → 调动资源 → 技术解决真实问题 → 形成系统。</p>
+    </header>
+
+    <div class="cards stagger-children">
+      <div class="card animate-in">
+        <h3 class="card-title" data-i18n="skills.s1">主动承担</h3>
+        <p class="card-desc" data-i18n="skills.s1d">主动申请去 BU、主动 take ownership 处理 user error case——没有一件事是被安排的。</p>
+      </div>
+      <div class="card animate-in">
+        <h3 class="card-title" data-i18n="skills.s2">快速学习</h3>
+        <p class="card-desc" data-i18n="skills.s2d">法规新场景、CT 后市场、AI 工具链——直接上手、找人学、把流程跑一遍。</p>
+      </div>
+      <div class="card animate-in">
+        <h3 class="card-title" data-i18n="skills.s3">调动资源</h3>
+        <p class="card-desc" data-i18n="skills.s3d">找软件组同事、组 AI 学习团队、联合小伙伴做 PoC——让不同的人愿意一起把事办成。</p>
+      </div>
+      <div class="card animate-in">
+        <h3 class="card-title" data-i18n="skills.s4">AI 落地</h3>
+        <p class="card-desc" data-i18n="skills.s4d">两周压到两天的文献分析、自动化流程、PoC 到产品——别人在学 AI 时，我已经用它解决真实问题。</p>
+      </div>
+      <div class="card animate-in">
+        <h3 class="card-title" data-i18n="skills.s5">系统思维</h3>
+        <p class="card-desc" data-i18n="skills.s5d">从单点工具到项目规划、产品设计、跨团队协作、AI 合规申报——把一件事做成系统，再复制。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="module" id="portfolio" style="background: var(--color-bg-alt)">
+  <div class="module-content">
+    <header class="module-header animate-in">
+      <span class="module-number">03</span>
+      <h1 class="module-title" data-i18n="portfolio.title">作品集</h1>
+      <p class="module-subtitle" data-i18n="portfolio.sub">真实做过的产物，不是演示稿。</p>
+    </header>
+
+    <div class="cards stagger-children">
+      <div class="card animate-in">
+        <h3 class="card-title">CER AI 辅助工具</h3>
+        <p class="card-desc" data-i18n="portfolio.p1">一致性核查、法规解析、文档模板生成，从 PoC 到与 HQT 约定分工协作（我们做 CER，他们做 PTR/IFU 对比表）。</p>
+      </div>
+      <div class="card animate-in">
+        <h3 class="card-title">User Error 文献分析</h3>
+        <p class="card-desc" data-i18n="portfolio.p2">百篇文献提取原文链接+摘要，LLM 逐篇分析论证无同类 case——一两周工作量压到 2 天，药监未发补。</p>
+      </div>
+      <div class="card animate-in">
+        <h3 class="card-title">AI 法规学习框架网页</h3>
+        <p class="card-desc" data-i18n="portfolio.p3">业余自学项目，用网页形式搭建法规学习框架，与 AI 学习团队一起迭代。</p>
+      </div>
+      <div class="card animate-in">
+        <h3 class="card-title">硬件学习 + 黑客松</h3>
+        <p class="card-desc" data-i18n="portfolio.p4">学习了解机械臂，和小伙伴参加外部黑客松——保持对技术的真实手感。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="module" id="projects" style="background: var(--color-bg)">
+  <div class="module-content">
+    <header class="module-header animate-in">
+      <span class="module-number">04</span>
+      <h1 class="module-title" data-i18n="projects.title">项目经历</h1>
+      <p class="module-subtitle" data-i18n="projects.sub">每个项目的完整闭环。</p>
+    </header>
+
+    <div class="cards stagger-children">
+      <div class="card animate-in">
+        <span class="card-year">2024</span>
+        <h3 class="card-title" data-i18n="projects.j1">领馆认证项目</h3>
+        <p class="card-desc" data-i18n="projects.j1d">在困难条件下拿到公证文件，CDSCO 获批路径清晰，Multix Fusion Max / Impact / Impact C 印度交付由此启动。</p>
+      </div>
+      <div class="card animate-in">
+        <span class="card-year">2024–25</span>
+        <h3 class="card-title" data-i18n="projects.j2">MP 全流程 RA 注册</h3>
+        <p class="card-desc" data-i18n="projects.j2d">三个 case 从协助到主导，型测/注册文档/应审/发补/拿证全流程闭环。</p>
+      </div>
+      <div class="card animate-in">
+        <span class="card-year">2025</span>
+        <h3 class="card-title" data-i18n="projects.j3">CT 板块拓展</h3>
+        <p class="card-desc" data-i18n="projects.j3d">光子系列注册学习（SE 组型测）+ DCU 后市场管理一年——学后市场流程与分析框架。</p>
+      </div>
+      <div class="card animate-in">
+        <span class="card-year">2025.06–11</span>
+        <h3 class="card-title" data-i18n="projects.j4">AI PoC 与 HQT 协作</h3>
+        <p class="card-desc" data-i18n="projects.j4d">PoC 惊艳 HQT 团队，约定 CER/PTR/IFU 分工协作方向。</p>
+      </div>
+      <div class="card animate-in">
+        <span class="card-year">2026</span>
+        <h3 class="card-title" data-i18n="projects.j5">产品化与项目管理</h3>
+        <p class="card-desc" data-i18n="projects.j5d">项目经理/产品经理/核心开发：项目规划、产品功能设计、信息组织、AI 合规申报、技术迭代学习。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <p data-i18n="footer.note">© 2026 Huang JiaNan · Built with ❤️ · <a href="https://github.com/Jianan-Huang0609/Jianan-Career-Pathway" target="_blank">GitHub</a></p>
+</footer>
+
+<script src="assets/i18n.js"></script>
+</body>
+</html>
