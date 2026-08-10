@@ -1,195 +1,953 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="zh-CN">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>高管对话 · 四层框架 | Jianan</title>
-<style>
-  :root{
-    --bg:#0B0B0F; --bg2:#12121A; --card:#171722; --card2:#1D1D2B;
-    --line:#2A2A3C; --tx:#F4F4F6; --tx2:#9A9AAE; --tx3:#6E6E85;
-    --acc:#7C6CFF; --acc2:#FF6B8A; --grn:#3DDC97; --amb:#FFC24B;
-    --mono:'JetBrains Mono',ui-monospace,SFMono-Regular,Menlo,monospace;
-  }
-  *{margin:0;padding:0;box-sizing:border-box}
-  body{background:var(--bg);color:var(--tx);font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;line-height:1.7}
-  .wrap{max-width:960px;margin:0 auto;padding:48px 24px 120px}
-  .kicker{font-family:var(--mono);font-size:13px;letter-spacing:2px;color:var(--acc);text-transform:uppercase}
-  h1{font-size:40px;font-weight:700;letter-spacing:-1px;margin:12px 0 8px}
-  .sub{color:var(--tx2);font-size:16px;margin-bottom:8px}
-  .meta{font-family:var(--mono);font-size:12px;color:var(--tx3);margin-bottom:48px}
-  .layer{margin-bottom:64px}
-  .layer-head{display:flex;align-items:baseline;gap:16px;margin-bottom:20px;padding-bottom:12px;border-bottom:1px solid var(--line)}
-  .layer-num{font-family:var(--mono);font-size:20px;color:var(--acc);font-weight:600}
-  .layer-title{font-size:26px;font-weight:700}
-  .layer-tag{font-size:12px;color:var(--tx3);font-family:var(--mono)}
-  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px}
-  .card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:20px}
-  .card h3{font-size:15px;font-weight:600;margin-bottom:10px;color:var(--tx)}
-  .card p,.card li{font-size:14px;color:var(--tx2)}
-  .card ul{list-style:none;padding-left:0}
-  .card li{padding:4px 0 4px 18px;position:relative}
-  .card li::before{content:"▸";position:absolute;left:0;color:var(--acc)}
-  .num-row{display:flex;flex-wrap:wrap;gap:12px;margin-top:12px}
-  .num{background:var(--card2);border:1px solid var(--line);border-radius:12px;padding:12px 16px;min-width:130px}
-  .num b{display:block;font-size:22px;font-weight:700;color:var(--acc2)}
-  .num span{font-size:12px;color:var(--tx3)}
-  .timeline{position:relative;padding-left:24px;border-left:2px solid var(--line);margin-left:8px}
-  .tl{position:relative;padding:0 0 22px 18px}
-  .tl::before{content:"";position:absolute;left:-31px;top:6px;width:12px;height:12px;border-radius:50%;background:var(--acc);box-shadow:0 0 0 4px rgba(124,108,255,.2)}
-  .tl .d{font-family:var(--mono);font-size:12px;color:var(--amb)}
-  .tl .t{font-size:14px;font-weight:600;color:var(--tx);margin-top:2px}
-  .tl .x{font-size:13px;color:var(--tx2);margin-top:2px}
-  .flow{display:flex;flex-wrap:wrap;align-items:center;gap:10px;margin:14px 0}
-  .flow .box{background:var(--card2);border:1px solid var(--line);border-radius:12px;padding:10px 14px;font-size:13px;color:var(--tx);text-align:center}
-  .flow .box.hl{border-color:var(--acc);box-shadow:0 0 0 3px rgba(124,108,255,.15)}
-  .flow .arr{color:var(--tx3);font-family:var(--mono)}
-  .split{display:grid;grid-template-columns:1fr 1fr;gap:16px}
-  .pill{display:inline-block;font-size:12px;padding:3px 10px;border-radius:99px;background:rgba(124,108,255,.12);color:var(--acc);font-family:var(--mono);margin-right:8px}
-  .qa{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:20px;margin-bottom:14px}
-  .qa .q{font-size:15px;font-weight:600;color:var(--tx)}
-  .qa .why{font-size:13px;color:var(--tx2);margin-top:6px}
-  .qa .why b{color:var(--amb);font-weight:600}
-  .assets{font-family:var(--mono);font-size:12px;color:var(--tx2)}
-  .assets li{padding:3px 0}
-  .ph{background:repeating-linear-gradient(45deg,var(--card),var(--card) 10px,var(--card2) 10px,var(--card2) 20px);border:1px dashed var(--line);border-radius:12px;padding:24px;text-align:center;color:var(--tx3);font-size:13px;margin-top:12px}
-  .footer{margin-top:64px;padding-top:24px;border-top:1px solid var(--line);font-family:var(--mono);font-size:12px;color:var(--tx3)}
-  @media(max-width:640px){.split{grid-template-columns:1fr}}
-</style>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="dark">
+  <meta name="description" content="Jianan 高管 1v1 四层对话材料：CER、AIDU Strategy（口述整理，名称待核实）、个人职业发展与潜在答疑。">
+  <title>高管 1v1 · 四层对话材料</title>
+  <style>
+    :root {
+      --bg: #0B0B0F;
+      --surface: #121218;
+      --surface-2: #17171F;
+      --paper: #EDEAE3;
+      --muted: #A7A6AD;
+      --quiet: #74737C;
+      --line: rgba(255,255,255,.12);
+      --line-strong: rgba(255,255,255,.24);
+      --signal: #FF6A2A;
+      --signal-soft: rgba(255,106,42,.14);
+      --mint: #77E0C1;
+      --amber: #FFD166;
+      --danger: #FF8A8A;
+      --radius: 22px;
+      --shadow: 0 30px 80px rgba(0,0,0,.34);
+      --sans: "Avenir Next", Avenir, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+      --serif: "Songti SC", STSong, "Noto Serif CJK SC", serif;
+      --mono: ui-monospace, "SFMono-Regular", Menlo, Monaco, Consolas, monospace;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      background:
+        radial-gradient(circle at 82% -8%, rgba(255,106,42,.11), transparent 27rem),
+        radial-gradient(circle at -8% 42%, rgba(119,224,193,.055), transparent 28rem),
+        var(--bg);
+      color: var(--paper);
+      font-family: var(--sans);
+      line-height: 1.72;
+      letter-spacing: .01em;
+      text-rendering: optimizeLegibility;
+    }
+
+    a { color: inherit; }
+    button { font: inherit; }
+    ::selection { background: var(--signal); color: #0B0B0F; }
+    :focus-visible { outline: 2px solid var(--amber); outline-offset: 4px; }
+
+    .skip-link {
+      position: fixed;
+      z-index: 100;
+      top: 10px;
+      left: 10px;
+      transform: translateY(-160%);
+      border-radius: 10px;
+      background: var(--paper);
+      color: var(--bg);
+      padding: 8px 12px;
+    }
+    .skip-link:focus { transform: translateY(0); }
+
+    .reading-progress {
+      position: fixed;
+      z-index: 80;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background: transparent;
+    }
+    .reading-progress span {
+      display: block;
+      width: 0;
+      height: 100%;
+      background: var(--signal);
+      box-shadow: 0 0 16px rgba(255,106,42,.75);
+    }
+
+    .topbar {
+      position: sticky;
+      z-index: 50;
+      top: 0;
+      border-bottom: 1px solid var(--line);
+      background: rgba(11,11,15,.82);
+      backdrop-filter: blur(22px) saturate(140%);
+    }
+    .topbar-inner {
+      max-width: 1180px;
+      margin: 0 auto;
+      min-height: 62px;
+      padding: 10px 28px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-family: var(--mono);
+      font-size: 12px;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+    .brand-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--signal);
+      box-shadow: 0 0 0 6px var(--signal-soft);
+    }
+    .topbar nav { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: 6px; }
+    .topbar nav a {
+      border-radius: 999px;
+      color: var(--muted);
+      padding: 6px 10px;
+      font-size: 12px;
+      text-decoration: none;
+    }
+    .topbar nav a:hover { background: rgba(255,255,255,.06); color: var(--paper); }
+
+    main { overflow: clip; }
+    .shell { width: min(1180px, calc(100% - 56px)); margin-inline: auto; }
+
+    .hero {
+      min-height: 82vh;
+      padding: 112px 0 80px;
+      display: grid;
+      grid-template-columns: minmax(0, 1.35fr) minmax(260px, .65fr);
+      align-items: end;
+      gap: 64px;
+    }
+    .eyebrow, .section-index, .mono-label {
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+    }
+    .eyebrow { color: var(--signal); }
+    h1, h2, h3, p { margin-top: 0; }
+    h1 {
+      max-width: 820px;
+      margin: 20px 0 28px;
+      font-family: var(--serif);
+      font-size: clamp(54px, 8.6vw, 112px);
+      font-weight: 600;
+      line-height: .96;
+      letter-spacing: -.055em;
+    }
+    .hero .lead {
+      max-width: 720px;
+      margin: 0;
+      color: #C8C6C9;
+      font-size: clamp(18px, 2vw, 25px);
+      line-height: 1.55;
+    }
+    .hero .lead strong { color: var(--paper); font-weight: 600; }
+    .hero-note {
+      align-self: center;
+      border-top: 1px solid var(--line-strong);
+      padding-top: 18px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+    .hero-note dl { margin: 20px 0 0; }
+    .hero-note .row {
+      display: grid;
+      grid-template-columns: 88px 1fr;
+      gap: 16px;
+      padding: 9px 0;
+      border-bottom: 1px solid var(--line);
+    }
+    .hero-note dt { color: var(--quiet); font-family: var(--mono); font-size: 11px; }
+    .hero-note dd { margin: 0; }
+
+    .conversation-rail {
+      margin-bottom: 136px;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      border-top: 1px solid var(--line-strong);
+      border-bottom: 1px solid var(--line-strong);
+    }
+    .rail-stop {
+      position: relative;
+      min-height: 150px;
+      padding: 22px 22px 24px 0;
+    }
+    .rail-stop + .rail-stop { border-left: 1px solid var(--line); padding-left: 22px; }
+    .rail-stop::before {
+      content: "";
+      position: absolute;
+      top: -5px;
+      left: 0;
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      background: var(--signal);
+    }
+    .rail-stop + .rail-stop::before { left: 22px; }
+    .rail-stop span { color: var(--signal); font-family: var(--mono); font-size: 11px; }
+    .rail-stop b { display: block; margin: 14px 0 6px; font-family: var(--serif); font-size: 22px; }
+    .rail-stop p { margin: 0; color: var(--muted); font-size: 13px; }
+
+    .layer { padding: 112px 0; border-top: 1px solid var(--line); scroll-margin-top: 74px; }
+    .layer-heading {
+      display: grid;
+      grid-template-columns: 92px minmax(0, 1fr) minmax(220px, 320px);
+      gap: 26px;
+      align-items: start;
+      margin-bottom: 58px;
+    }
+    .section-index { color: var(--signal); padding-top: 8px; }
+    h2 {
+      margin-bottom: 12px;
+      font-family: var(--serif);
+      font-size: clamp(40px, 6vw, 76px);
+      font-weight: 600;
+      line-height: 1.04;
+      letter-spacing: -.04em;
+    }
+    .layer-heading .thesis { margin: 0; color: var(--muted); font-size: 15px; }
+    .layer-heading .takeaway {
+      margin: 8px 0 0;
+      border-left: 2px solid var(--signal);
+      padding-left: 16px;
+      color: #D4D1CD;
+      font-size: 14px;
+    }
+
+    .card {
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: linear-gradient(145deg, rgba(255,255,255,.055), rgba(255,255,255,.018));
+      box-shadow: var(--shadow);
+    }
+    .card-flat { box-shadow: none; }
+    .card-pad { padding: 28px; }
+    .card h3 {
+      margin-bottom: 9px;
+      font-size: 17px;
+      font-weight: 600;
+    }
+    .card p:last-child { margin-bottom: 0; }
+    .muted { color: var(--muted); }
+    .tiny { color: var(--quiet); font-size: 12px; }
+    .signal { color: var(--signal); }
+    .mint { color: var(--mint); }
+    .amber { color: var(--amber); }
+
+    .cer-timeline {
+      position: relative;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0;
+      margin-bottom: 26px;
+      padding-top: 28px;
+    }
+    .cer-timeline::before {
+      content: "";
+      position: absolute;
+      top: 34px;
+      left: 8px;
+      right: 8px;
+      height: 1px;
+      background: linear-gradient(90deg, var(--signal), rgba(255,106,42,.18));
+    }
+    .moment { position: relative; padding: 38px 28px 0 0; }
+    .moment::before {
+      content: "";
+      position: absolute;
+      z-index: 2;
+      top: 0;
+      left: 0;
+      width: 13px;
+      height: 13px;
+      border: 4px solid var(--bg);
+      border-radius: 50%;
+      background: var(--signal);
+      box-shadow: 0 0 0 1px var(--signal);
+    }
+    .moment time { font-family: var(--mono); color: var(--amber); font-size: 11px; }
+    .moment b { display: block; margin: 9px 0 5px; font-size: 16px; }
+    .moment p { color: var(--muted); font-size: 13px; }
+
+    .metric-grid {
+      display: grid;
+      grid-template-columns: 1.35fr 1fr 1fr 1fr;
+      gap: 12px;
+      margin: 36px 0 12px;
+    }
+    .metric {
+      min-height: 156px;
+      padding: 22px;
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      background: var(--surface);
+    }
+    .metric.primary { background: var(--signal); color: #120B08; border-color: transparent; }
+    .metric .value {
+      display: block;
+      margin: 14px 0 12px;
+      font-family: var(--serif);
+      font-size: clamp(28px, 3.2vw, 46px);
+      font-weight: 600;
+      line-height: 1;
+      letter-spacing: -.04em;
+      font-variant-numeric: tabular-nums;
+    }
+    .metric .label { font-size: 12px; color: var(--muted); }
+    .metric.primary .label, .metric.primary .mono-label { color: rgba(18,11,8,.7); }
+
+    .capability-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+      margin-top: 28px;
+    }
+    .capability { min-height: 190px; padding: 24px; }
+    .capability .cap-no { font-family: var(--mono); color: var(--signal); font-size: 11px; }
+    .capability b { display: block; margin: 36px 0 8px; font-family: var(--serif); font-size: 23px; }
+    .capability p { margin: 0; color: var(--muted); font-size: 13px; }
+
+    .boundary {
+      margin-top: 28px;
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
+      align-items: stretch;
+      gap: 0;
+      overflow: hidden;
+    }
+    .boundary > div { padding: 24px; }
+    .boundary .divider {
+      display: grid;
+      place-items: center;
+      width: 58px;
+      padding: 0;
+      color: var(--signal);
+      font-family: var(--mono);
+      border-left: 1px solid var(--line);
+      border-right: 1px solid var(--line);
+    }
+    .boundary ul { margin: 10px 0 0; padding-left: 18px; color: var(--muted); font-size: 13px; }
+
+    .aidu-alert {
+      margin-bottom: 34px;
+      padding: 18px 22px;
+      border: 1px solid rgba(255,209,102,.38);
+      border-radius: 16px;
+      background: rgba(255,209,102,.075);
+      color: #E8D9B1;
+      font-size: 14px;
+    }
+    .aidu-alert strong { color: var(--amber); }
+
+    .strategy-flow {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      gap: 12px;
+      counter-reset: step;
+    }
+    .strategy-step {
+      position: relative;
+      min-height: 224px;
+      padding: 22px;
+      counter-increment: step;
+    }
+    .strategy-step::before {
+      content: "0" counter(step);
+      display: block;
+      color: var(--signal);
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: .12em;
+    }
+    .strategy-step::after {
+      content: "→";
+      position: absolute;
+      z-index: 2;
+      top: 50%;
+      right: -20px;
+      width: 28px;
+      height: 28px;
+      display: grid;
+      place-items: center;
+      border: 1px solid var(--line);
+      border-radius: 50%;
+      background: var(--bg);
+      color: var(--signal);
+      transform: translateY(-50%);
+    }
+    .strategy-step:last-child::after { display: none; }
+    .strategy-step b { display: block; margin: 42px 0 10px; font-family: var(--serif); font-size: 22px; line-height: 1.25; }
+    .strategy-step p { margin: 0; color: var(--muted); font-size: 12px; }
+    .strategy-step.fast { border-color: rgba(255,106,42,.7); background: var(--signal-soft); }
+
+    .mechanism-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 24px; }
+    .mechanism-grid .card { padding: 28px; }
+    .mode-list, .resource-list { list-style: none; margin: 18px 0 0; padding: 0; }
+    .mode-list li, .resource-list li {
+      display: grid;
+      grid-template-columns: 94px 1fr;
+      gap: 18px;
+      padding: 15px 0;
+      border-top: 1px solid var(--line);
+      color: var(--muted);
+      font-size: 13px;
+    }
+    .mode-list b, .resource-list b { color: var(--paper); }
+
+    .fast-win {
+      margin-top: 24px;
+      padding: 32px;
+      display: grid;
+      grid-template-columns: 1fr minmax(240px, .7fr);
+      gap: 40px;
+      align-items: center;
+      border-color: rgba(119,224,193,.32);
+    }
+    .fast-win blockquote { margin: 0; font-family: var(--serif); font-size: clamp(21px, 2.4vw, 31px); line-height: 1.45; }
+    .fast-win aside { color: var(--muted); font-size: 13px; }
+
+    .career-path {
+      position: relative;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+      margin-bottom: 24px;
+    }
+    .career-path::before {
+      content: "";
+      position: absolute;
+      top: 50%;
+      left: 12%;
+      right: 12%;
+      height: 1px;
+      background: var(--line-strong);
+    }
+    .career-stage {
+      position: relative;
+      min-height: 270px;
+      padding: 28px;
+      background: rgba(18,18,24,.94);
+    }
+    .career-stage:nth-child(2) { transform: translateY(-18px); }
+    .career-stage:nth-child(3) { transform: translateY(-36px); border-color: rgba(255,106,42,.62); }
+    .career-stage .stage-tag { color: var(--signal); font-family: var(--mono); font-size: 11px; }
+    .career-stage h3 { margin: 70px 0 12px; font-family: var(--serif); font-size: 30px; }
+    .career-stage p { color: var(--muted); font-size: 13px; }
+
+    .method-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+    .method { padding: 26px; }
+    .method .glyph { display: inline-grid; place-items: center; width: 36px; height: 36px; border: 1px solid var(--line-strong); border-radius: 50%; color: var(--signal); font-family: var(--mono); }
+    .method h3 { margin-top: 34px; font-family: var(--serif); font-size: 25px; }
+    .method p { color: var(--muted); font-size: 13px; }
+
+    details.source-quote { margin-top: 24px; }
+    details.source-quote summary {
+      cursor: pointer;
+      list-style: none;
+      padding: 18px 22px;
+      color: var(--muted);
+      font-family: var(--mono);
+      font-size: 12px;
+    }
+    details.source-quote summary::-webkit-details-marker { display: none; }
+    details.source-quote summary::before { content: "+"; margin-right: 12px; color: var(--signal); }
+    details.source-quote[open] summary::before { content: "−"; }
+    details.source-quote blockquote { margin: 0; padding: 0 26px 26px; font-family: var(--serif); font-size: 19px; color: #D7D3CD; }
+
+    .question-groups { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+    .question-group { padding: 26px; }
+    .question-group .group-title { margin-bottom: 20px; color: var(--signal); font-family: var(--mono); font-size: 11px; letter-spacing: .12em; }
+    .question {
+      padding: 18px 0;
+      border-top: 1px solid var(--line);
+    }
+    .question:first-of-type { border-top: 0; }
+    .question p { margin: 0 0 10px; font-family: var(--serif); font-size: 19px; line-height: 1.45; }
+    .why-toggle {
+      appearance: none;
+      border: 0;
+      background: transparent;
+      color: var(--muted);
+      padding: 2px 0;
+      cursor: pointer;
+      font-family: var(--mono);
+      font-size: 11px;
+    }
+    .why-toggle::before { content: "+ "; color: var(--signal); }
+    .why-toggle[aria-expanded="true"]::before { content: "− "; }
+    .why {
+      margin-top: 10px;
+      padding-left: 14px;
+      border-left: 1px solid var(--signal);
+      color: var(--muted);
+      font-size: 12px;
+    }
+    .why[hidden] { display: none; }
+
+    .answer-strip {
+      margin-top: 24px;
+      padding: 26px;
+      display: grid;
+      grid-template-columns: 150px 1fr;
+      gap: 24px;
+    }
+    .answer-strip .mono-label { color: var(--signal); }
+    .answer-strip p { margin-bottom: 8px; font-size: 14px; }
+    .answer-strip p:last-child { margin-bottom: 0; }
+
+    .evidence-section { padding: 112px 0 140px; border-top: 1px solid var(--line); }
+    .evidence-head { max-width: 760px; margin-bottom: 38px; }
+    .evidence-head h2 { font-size: clamp(38px, 5vw, 64px); }
+    .source-list { display: grid; gap: 10px; }
+    .source-item {
+      display: grid;
+      grid-template-columns: 44px minmax(0, 1fr) auto;
+      gap: 16px;
+      align-items: center;
+      padding: 16px 18px;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      background: rgba(255,255,255,.025);
+    }
+    .source-item .status { color: var(--mint); font-family: var(--mono); font-size: 10px; }
+    .source-item code {
+      overflow-wrap: anywhere;
+      color: #C9C7CC;
+      font-family: var(--mono);
+      font-size: 11px;
+    }
+    .copy-button {
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: transparent;
+      color: var(--muted);
+      padding: 6px 10px;
+      cursor: pointer;
+      font-family: var(--mono);
+      font-size: 10px;
+    }
+    .copy-button:hover { border-color: var(--line-strong); color: var(--paper); }
+
+    .source-note {
+      margin-top: 24px;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+    }
+    .source-note .card { padding: 22px; color: var(--muted); font-size: 12px; }
+    .source-note b { color: var(--paper); }
+
+    .reserve {
+      margin-top: 34px;
+      padding: 32px;
+      border: 1px dashed rgba(255,255,255,.25);
+      border-radius: var(--radius);
+      background: repeating-linear-gradient(-45deg, rgba(255,255,255,.025), rgba(255,255,255,.025) 8px, transparent 8px, transparent 18px);
+    }
+    .reserve h3 { font-family: var(--serif); font-size: 26px; }
+    .reserve ul { margin-bottom: 0; padding-left: 19px; color: var(--muted); font-size: 13px; }
+
+    footer {
+      border-top: 1px solid var(--line);
+      color: var(--quiet);
+      padding: 28px 0 44px;
+      font-family: var(--mono);
+      font-size: 10px;
+    }
+    .footer-inner { display: flex; justify-content: space-between; gap: 22px; }
+
+    .reveal { animation: reveal .7s cubic-bezier(.2,.7,.2,1) both; }
+    .reveal:nth-child(2) { animation-delay: .08s; }
+    .reveal:nth-child(3) { animation-delay: .16s; }
+    @keyframes reveal {
+      from { opacity: 0; transform: translateY(18px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @media (max-width: 980px) {
+      .hero { grid-template-columns: 1fr; min-height: auto; }
+      .hero-note { max-width: 580px; }
+      .layer-heading { grid-template-columns: 72px 1fr; }
+      .layer-heading .takeaway { grid-column: 2; }
+      .metric-grid { grid-template-columns: repeat(2, 1fr); }
+      .capability-grid { grid-template-columns: repeat(2, 1fr); }
+      .strategy-flow { grid-template-columns: 1fr; }
+      .strategy-step { min-height: 150px; }
+      .strategy-step b { margin-top: 28px; }
+      .strategy-step::after { top: auto; right: 50%; bottom: -21px; transform: translateX(50%) rotate(90deg); }
+      .question-groups { grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 720px) {
+      .shell { width: min(100% - 32px, 1180px); }
+      .topbar-inner { padding-inline: 16px; }
+      .topbar nav { display: none; }
+      .hero { padding: 82px 0 64px; gap: 42px; }
+      h1 { font-size: clamp(52px, 18vw, 86px); }
+      .conversation-rail { grid-template-columns: 1fr 1fr; }
+      .rail-stop:nth-child(3) { border-left: 0; }
+      .rail-stop:nth-child(n+3) { border-top: 1px solid var(--line); }
+      .rail-stop:nth-child(3) { padding-left: 0; }
+      .rail-stop:nth-child(3)::before { left: 0; }
+      .layer { padding: 82px 0; }
+      .layer-heading { grid-template-columns: 1fr; gap: 8px; }
+      .layer-heading .takeaway { grid-column: auto; margin-top: 12px; }
+      .cer-timeline { grid-template-columns: 1fr; padding: 0 0 0 22px; }
+      .cer-timeline::before { top: 6px; bottom: 6px; left: 5px; right: auto; width: 1px; height: auto; }
+      .moment { padding: 0 0 30px 24px; }
+      .moment::before { top: 4px; left: -22px; }
+      .metric-grid, .capability-grid, .mechanism-grid, .career-path, .method-grid, .source-note { grid-template-columns: 1fr; }
+      .boundary, .fast-win { grid-template-columns: 1fr; }
+      .boundary .divider { width: auto; min-height: 48px; border: 0; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+      .career-path::before { display: none; }
+      .career-stage:nth-child(n) { transform: none; min-height: auto; }
+      .career-stage h3 { margin-top: 42px; }
+      .answer-strip { grid-template-columns: 1fr; }
+      .source-item { grid-template-columns: 36px minmax(0, 1fr); }
+      .source-item .copy-button { grid-column: 2; justify-self: start; }
+      .footer-inner { flex-direction: column; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
+    }
+
+    @media print {
+      :root { --bg: #FFFFFF; --surface: #FFFFFF; --surface-2: #F5F4F1; --paper: #111116; --muted: #4D4C53; --quiet: #66646C; --line: rgba(0,0,0,.16); --line-strong: rgba(0,0,0,.28); --shadow: none; }
+      @page { size: A4; margin: 14mm; }
+      body { background: #FFFFFF; color: #111116; font-size: 10pt; }
+      .reading-progress, .topbar, .skip-link, .copy-button, .why-toggle { display: none !important; }
+      .shell { width: 100%; }
+      .hero { min-height: auto; padding: 18mm 0 12mm; grid-template-columns: 1fr .48fr; }
+      h1 { font-size: 52pt; }
+      .conversation-rail { margin-bottom: 14mm; }
+      .layer, .evidence-section { padding: 12mm 0; break-before: page; }
+      .card, .metric, .source-item { background: #FFFFFF !important; box-shadow: none; break-inside: avoid; }
+      .metric.primary { color: #111116; border: 2px solid var(--signal); }
+      .metric.primary .label, .metric.primary .mono-label { color: #4D4C53; }
+      .career-stage { background: #FFFFFF; }
+      .why[hidden] { display: block; }
+      details.source-quote > * { display: block; }
+      footer { padding-bottom: 0; }
+    }
+  </style>
 </head>
 <body>
-<div class="wrap">
+  <a class="skip-link" href="#main">跳到主要内容</a>
+  <div class="reading-progress" aria-hidden="true"><span id="progressBar"></span></div>
 
-  <div class="kicker">Executive 1:1 · Material</div>
-  <h1>高管对话 · 四层框架</h1>
-  <p class="sub">CER 项目 → AIDU Strategy → 个人职业发展 → 潜在答疑</p>
-  <div class="meta">JIANAN / 2026-08-10 / V1 — 展示版（Codex 打磨中）</div>
-
-  <!-- ============ LAYER 1 ============ -->
-  <section class="layer">
-    <div class="layer-head"><span class="layer-num">01</span><span class="layer-title">CER 项目</span><span class="layer-tag">业务价值证明</span></div>
-
-    <div class="timeline">
-      <div class="tl"><span class="d">FY26 Q1</span><div class="t">PoC 立项</div><div class="x">发现痛点：CER 高重复 / 高合规 / 强依赖专家 · 全公司约 25 份/年 · 单份约 2 个月</div></div>
-      <div class="tl"><span class="d">2026.06</span><div class="t">V2 迭代</div><div class="x">可对比、可复用</div></div>
-      <div class="tl"><span class="d">V6</span><div class="t">固定顺序链路 Stage0-5</div><div class="x">每步留 artifact（CSV/JSON/DOCX），可回验 · 四块能力：提取填充 / Comparison / Difference / Literature Review</div></div>
-      <div class="tl"><span class="d">里程碑</span><div class="t">进入真实业务</div><div class="x">3 份 CT CER 进入 NMPA 递交流程 · 300 MD/年 工作量释放（20 MD × 15 reports）</div></div>
-      <div class="tl"><span class="d">下一步</span><div class="t">泛化与平台化</div><div class="x">Multi-BU（XP/AT 8月）· PDF 多格式 · Analysis Chat · 能力 API 化（4 Phase）</div></div>
+  <header class="topbar">
+    <div class="topbar-inner">
+      <div class="brand"><span class="brand-dot"></span>内部 1v1 · 2026.08</div>
+      <nav aria-label="四层材料导航">
+        <a href="#cer">01 CER</a>
+        <a href="#aidu">02 AIDU（口述整理，名称待核实）</a>
+        <a href="#career">03 个人发展</a>
+        <a href="#questions">04 潜在答疑</a>
+        <a href="#sources">素材</a>
+      </nav>
     </div>
+  </header>
 
-    <div class="num-row">
-      <div class="num"><b>2天+ → ~5分钟</b><span>对比表 Draft</span></div>
-      <div class="num"><b>天级 → ~3分钟</b><span>内容生成 / 文献综述</span></div>
-      <div class="num"><b>FN 0%</b><span>真实差异不漏</span></div>
-      <div class="num"><b>FP ~12%</b><span>宁可多提示让专家排除</span></div>
-      <div class="num"><b>100%</b><span>Source Fidelity</span></div>
-    </div>
-
-    <div class="card" style="margin-top:16px">
-      <h3>素材 / 可直接展示的 HTML & PPT</h3>
-      <ul class="assets">
-        <li>deck/0509_CER_Automation_Deck.html（主 Deck，另有 v4/v6）</li>
-        <li>materials/CER_LLM_Layer_Architecture_20260807.html（LLM 层架构）</li>
-        <li>materials/CER_Stage1_Ordered_Alignment_Ribbon_Architecture_Casebook_20260803.html</li>
-        <li>video/scenes/v8/PLAY.html（12 幕视频分镜）· video/scenes/v2/previews/*.png（截图）</li>
-        <li>ppt/SSME_QT_CER-0618.pptx · speech/20260807_全球平台分享演讲稿_主稿12页.md</li>
-      </ul>
-      <div class="ph">⏳ 预留位：最新 PPT / 关键节点截图（Jianan 后续提供后嵌入）</div>
-    </div>
-  </section>
-
-  <!-- ============ LAYER 2 ============ -->
-  <section class="layer">
-    <div class="layer-head"><span class="layer-num">02</span><span class="layer-title">AIDU Strategy</span><span class="layer-tag">组织级战略理解 · 口述整理待核实</span></div>
-
-    <div class="flow">
-      <div class="box">所有 BU<br>× 各 Function</div>
-      <span class="arr">→</span>
-      <div class="box hl">AIDU Interface Team</div>
-      <span class="arr">→</span>
-      <div class="box">深入组织内部<br>挖掘 User Ideas</div>
-      <span class="arr">→</span>
-      <div class="box">评分机制</div>
-      <span class="arr">→</span>
-      <div class="box hl">筛选 · Fast Win<br>更多人才流入</div>
-    </div>
-
-    <div class="split">
-      <div class="card">
-        <h3>落地方式（两条路径）</h3>
-        <ul>
-          <li><b style="color:var(--grn)">自提自落</b> — 你有好 Idea，自己提出、自己落地</li>
-          <li><b style="color:var(--acc2)">自提他落</b> — 你有好 Idea，团队综合力量一起解决</li>
-        </ul>
+  <main id="main">
+    <section class="hero shell" aria-labelledby="page-title">
+      <div class="reveal">
+        <div class="eyebrow">Jianan · Executive Briefing</div>
+        <h1 id="page-title">把 AI 落进<br>真实合规业务</h1>
+        <p class="lead">从一个进入真实流程的 CER 产品出发，讲清<strong>做成了什么、如何理解组织、正在成为谁、希望校准什么</strong>。</p>
       </div>
-      <div class="card">
-        <h3>资源来源（三个方向）</h3>
-        <ul>
-          <li>① 公司内部已有的人才库</li>
-          <li>② IT 的资源</li>
-          <li>③ 外部供应商的资金与资源</li>
-        </ul>
+      <aside class="hero-note reveal" aria-label="材料说明">
+        <div class="mono-label signal">对话用途</div>
+        <p>公司内部高管 1v1。不是公开简历，也不是纯技术汇报。</p>
+        <dl>
+          <div class="row"><dt>主线</dt><dd>证据 → 机制 → 成长 → 提问</dd></div>
+          <div class="row"><dt>角色</dt><dd>RA → AI Product</dd></div>
+          <div class="row"><dt>边界</dt><dd>AI 做 Draft，专家终审</dd></div>
+          <div class="row"><dt>状态</dt><dd>V2 · 2026-08-10</dd></div>
+        </dl>
+      </aside>
+    </section>
+
+    <section class="conversation-rail shell" aria-label="四层对话路线">
+      <article class="rail-stop"><span>01 · 证据</span><b>CER</b><p>我做成了什么</p></article>
+      <article class="rail-stop"><span>02 · 机制</span><b>AIDU*</b><p>口述整理，名称待核实</p></article>
+      <article class="rail-stop"><span>03 · 成长</span><b>AI Product</b><p>我正在成为谁</p></article>
+      <article class="rail-stop"><span>04 · 校准</span><b>Questions</b><p>我希望获得什么</p></article>
+    </section>
+
+    <section class="layer shell" id="cer" aria-labelledby="cer-title">
+      <header class="layer-heading">
+        <div class="section-index">Layer 01</div>
+        <div>
+          <h2 id="cer-title">CER<br>业务价值证明</h2>
+          <p class="thesis">不是让 AI 替代专家，而是把机械准备变成可检查的 Draft，把时间还给专业判断。</p>
+        </div>
+        <p class="takeaway">高管应记住：它进入了真实合规流程，并且把效率、质量与人的判断权放在同一套系统里。</p>
+      </header>
+
+      <div class="cer-timeline" aria-label="CER 历程时间轴">
+        <article class="moment"><time>FY26 Q1</time><b>PoC 验证</b><p>从真实重复劳动和专家边界切入。</p></article>
+        <article class="moment"><time>2026.06</time><b>V2 迭代</b><p>从功能试验走向可比较、可复用。</p></article>
+        <article class="moment"><time>V6</time><b>Stage0–5</b><p>固定链路，逐阶段 artifact 可回验。</p></article>
+        <article class="moment"><time>Next</time><b>泛化与平台化</b><p>Multi-BU、PDF、Analysis Chat、API。</p></article>
       </div>
+
+      <div class="metric-grid" aria-label="CER 核心数据">
+        <article class="metric primary"><span class="mono-label">效率</span><strong class="value">2 天+ → 约 5 分钟</strong><span class="label">对比表 Draft</span></article>
+        <article class="metric"><span class="mono-label">来源守恒</span><strong class="value mint">100%</strong><span class="label">Source Fidelity</span></article>
+        <article class="metric"><span class="mono-label">风险底线</span><strong class="value amber">FN 0%</strong><span class="label">真实差异不漏</span></article>
+        <article class="metric"><span class="mono-label">业务采用</span><strong class="value">3 份</strong><span class="label">CT CER 进入 NMPA 递交流程</span></article>
+      </div>
+      <p class="tiny">补充口径：内容生成与文献综述由天级压缩到约 3 分钟；FP 约 12%；列间对齐 &gt;95%。均用于内部 1v1。</p>
+
+      <div class="capability-grid" aria-label="四块核心能力">
+        <article class="card card-flat capability"><span class="cap-no">01</span><b>提取与填充</b><p>定位字段、结构化提取、自动填充；用户核对来源并确认。</p></article>
+        <article class="card card-flat capability"><span class="cap-no">02</span><b>Comparison</b><p>对齐两份 PTR、生成对比表、标出增删改。</p></article>
+        <article class="card card-flat capability"><span class="cap-no">03</span><b>Difference Analysis</b><p>AI 给出差异分析 Draft，专家评估影响并终审。</p></article>
+        <article class="card card-flat capability"><span class="cap-no">04</span><b>Literature Review</b><p>批量解析、筛选、总结；专家决定纳排与专业结论。</p></article>
+      </div>
+
+      <div class="card card-flat boundary" aria-label="人机边界">
+        <div><span class="mono-label signal">AI 负责</span><h3>准备与 Draft</h3><ul><li>定位、提取、对齐</li><li>受控语义判断</li><li>生成可回验中间产物</li></ul></div>
+        <div class="divider" aria-hidden="true">×</div>
+        <div><span class="mono-label mint">专家负责</span><h3>判断与终审</h3><ul><li>核对证据</li><li>判断临床与安全影响</li><li>承担最终决策责任</li></ul></div>
+      </div>
+    </section>
+
+    <section class="layer shell" id="aidu" aria-labelledby="aidu-title">
+      <header class="layer-heading">
+        <div class="section-index">Layer 02</div>
+        <div>
+          <h2 id="aidu-title">AIDU Strategy<span class="tiny" style="display:block;letter-spacing:.03em;margin-top:12px">口述整理，名称待核实</span></h2>
+          <p class="thesis">口述整理，名称待核实。把分散的 User Ideas 变成可选择、可配置资源、可放大的组织回路。</p>
+        </div>
+        <p class="takeaway">CER 的位置不是“已经被正式认定”，而是一个有资格被讨论为 Fast Win 的候选样板。</p>
+      </header>
+
+      <div class="aidu-alert" role="note"><strong>AIDU Strategy（口述整理，名称待核实）</strong>：`AIDU` 可能与 AIDO / AIDI 等同源；正式名称确认前，不将它表述为已核实的组织项目或制度。</div>
+
+      <div class="strategy-flow" aria-label="AIDU Strategy 五步机制，口述整理，名称待核实">
+        <article class="card card-flat strategy-step"><b>聚合</b><p>所有 BU 与各 Function 汇入共同机会池。</p></article>
+        <article class="card card-flat strategy-step"><b>形成 Interface Team</b><p>AIDU Interface Team（口述整理，名称待核实）连接组织与机会。</p></article>
+        <article class="card card-flat strategy-step"><b>深入挖掘</b><p>Interface 进入组织内部，找到真实 User Ideas。</p></article>
+        <article class="card card-flat strategy-step"><b>评分筛选</b><p>用共同标准判断价值、可行性与优先级。</p></article>
+        <article class="card card-flat strategy-step fast"><b>放大 Fast Win</b><p>结果吸引更多人才流入，形成正反馈。</p></article>
+      </div>
+
+      <div class="mechanism-grid">
+        <article class="card card-flat">
+          <div class="mono-label signal">两种落地模式</div>
+          <ul class="mode-list">
+            <li><b>自提自落</b><span>提出 idea 的人或团队自己推动闭环。</span></li>
+            <li><b>自提他落</b><span>由跨职能团队综合力量共同解决。</span></li>
+          </ul>
+        </article>
+        <article class="card card-flat">
+          <div class="mono-label signal">三类资源</div>
+          <ul class="resource-list">
+            <li><b>内部人才库</b><span>组合业务、AI 与平台能力。</span></li>
+            <li><b>IT 资源</b><span>提供平台、部署、数据与工程能力。</span></li>
+            <li><b>外部供应商</b><span>补充资金或专项资源；敏感资料与核心判断不外移。</span></li>
+          </ul>
+        </article>
+      </div>
+
+      <article class="card card-flat fast-win">
+        <blockquote>“按我对 AIDU Strategy（口述整理，名称待核实）的理解，CER 可以作为一个 Fast Win 候选样板。”</blockquote>
+        <aside>它来自真实痛点，有量化结果，也进入了真实流程。下一步不是复制界面，而是沉淀能被其他 BU 复用的能力。</aside>
+      </article>
+    </section>
+
+    <section class="layer shell" id="career" aria-labelledby="career-title">
+      <header class="layer-heading">
+        <div class="section-index">Layer 03</div>
+        <div>
+          <h2 id="career-title">个人职业发展</h2>
+          <p class="thesis">不是离开业务去“转技术”，而是带着 RA 的业务深度，成长为能定义、交付并推广 AI 产品的人。</p>
+        </div>
+        <p class="takeaway">成长线：RA → AI 产品实践 → AI Product。底层能力持续叠加，而不是推倒重来。</p>
+      </header>
+
+      <div class="career-path" aria-label="RA 到 AI Product 成长路径">
+        <article class="card card-flat career-stage"><span class="stage-tag">01 · BUSINESS DEPTH</span><h3>RA 业务深度</h3><p>懂法规、流程、专家判断与风险边界。</p></article>
+        <article class="card card-flat career-stage"><span class="stage-tag">02 · PRODUCT PRACTICE</span><h3>AI 产品实践</h3><p>定义问题、拆解流程、做评估、推动真实采用。</p></article>
+        <article class="card card-flat career-stage"><span class="stage-tag">03 · ORGANIZATION VALUE</span><h3>AI Product</h3><p>连接业务、技术、合规与组织资源，持续交付可复用价值。</p></article>
+      </div>
+
+      <div class="method-grid" aria-label="三个方法论标签">
+        <article class="card card-flat method"><span class="glyph">B</span><h3>业务驱动</h3><p>先找值得解决的问题，再选择 AI；真实痛点和专家 know-how 是起点。</p></article>
+        <article class="card card-flat method"><span class="glyph">G</span><h3>边界感</h3><p>知道 AI 应该做什么，也知道什么时候必须交还给专家。</p></article>
+        <article class="card card-flat method"><span class="glyph">E</span><h3>工程化落地</h3><p>固定链路、质量 Gate、artifact 留痕，让系统可检查、可纠正、可复用。</p></article>
+      </div>
+
+      <details class="card card-flat source-quote">
+        <summary>展开 Jianan 原始需求</summary>
+        <blockquote>“我下周需要和公司的一个高管稍微聊一下我自己，主要方向是讲述我在 SSME 的框架下做了什么事情，表现出我比较优秀的点可以串起来。新建一个 GitHub，以后职业发展、更新简历都可以往这个方向聚合，包括搭建自己的个人网站——履历、能力、作品集、项目经历等等板块。”</blockquote>
+      </details>
+    </section>
+
+    <section class="layer shell" id="questions" aria-labelledby="questions-title">
+      <header class="layer-heading">
+        <div class="section-index">Layer 04</div>
+        <div>
+          <h2 id="questions-title">潜在答疑</h2>
+          <p class="thesis">把 1v1 从“请给我建议”变成一次关于指标、人才与长期成长的方向校准。</p>
+        </div>
+        <p class="takeaway">现场不必全问。根据对话走向，优先选 2–3 个能推动下一步的问题。</p>
+      </header>
+
+      <div class="question-groups">
+        <article class="card card-flat question-group">
+          <div class="group-title">01 · QT 方向</div>
+          <div class="question">
+            <p>作为老板，您最关注 QT 的哪几个指标？</p>
+            <button class="why-toggle" type="button" aria-expanded="false" aria-controls="why-1">为什么问</button>
+            <div class="why" id="why-1" hidden>对齐高管的价值尺度，避免只讲“做了很多”，却没有连接组织结果。</div>
+          </div>
+          <div class="question">
+            <p>您希望 QT 的 AI 自动化优先往哪里落地？</p>
+            <button class="why-toggle" type="button" aria-expanded="false" aria-controls="why-2">为什么问</button>
+            <div class="why" id="why-2" hidden>识别真正的战略优先级，也判断 CER 能否作为可复制样板。</div>
+          </div>
+        </article>
+
+        <article class="card card-flat question-group">
+          <div class="group-title">02 · AI Talent</div>
+          <div class="question">
+            <p>您怎么看组织内 AI talent 的发展前景？最稀缺的能力是什么？</p>
+            <button class="why-toggle" type="button" aria-expanded="false" aria-controls="why-3">为什么问</button>
+            <div class="why" id="why-3" hidden>用组织视角校准能力建设，而不是只凭个人兴趣下注。</div>
+          </div>
+          <div class="question">
+            <p>从 RA 走向 AI Product，您建议我下一阶段重点承担什么？</p>
+            <button class="why-toggle" type="button" aria-expanded="false" aria-controls="why-4">为什么问</button>
+            <div class="why" id="why-4" hidden>把职业困惑变成可行动的责任选择，请高管给方向而不是泛泛鼓励。</div>
+          </div>
+        </article>
+
+        <article class="card card-flat question-group">
+          <div class="group-title">03 · 年轻人成长</div>
+          <div class="question">
+            <p>对跨 BU 的 Fast Win，您最看重速度、价值、合规还是可复制性？</p>
+            <button class="why-toggle" type="button" aria-expanded="false" aria-controls="why-5">为什么问</button>
+            <div class="why" id="why-5" hidden>理解资源为什么流向某些项目，也为下一次项目选择建立标准。</div>
+          </div>
+          <div class="question">
+            <p>年轻人最容易低估、但应该尽早积累的能力是什么？</p>
+            <button class="why-toggle" type="button" aria-expanded="false" aria-controls="why-6">为什么问</button>
+            <div class="why" id="why-6" hidden>获得高管基于长期经验的建议，用开放问题收尾。</div>
+          </div>
+        </article>
+      </div>
+
+      <aside class="card card-flat answer-strip" aria-label="高管追问应答原则">
+        <div class="mono-label">应答原则</div>
+        <div>
+          <p><strong>为什么是 CER？</strong> 真实、重复、专家 know-how 丰富，而且输入输出可回验。</p>
+          <p><strong>AI 会不会越界？</strong> AI 做准备与 Draft；缺证据不猜；专家终审。</p>
+          <p><strong>怎么证明不是 Demo？</strong> 效率与质量指标之外，还有 3 份 CT CER 进入 NMPA 递交流程。</p>
+          <p><strong>你想成为谁？</strong> 带着 RA 深度成长为能交付受控、可复用产品的 AI Product。</p>
+        </div>
+      </aside>
+    </section>
+
+    <section class="evidence-section shell" id="sources" aria-labelledby="sources-title">
+      <header class="evidence-head">
+        <div class="eyebrow">Evidence Index</div>
+        <h2 id="sources-title">素材不是附件，<br>是每个结论的出处</h2>
+        <p class="muted">以下均已读取。路径相对于 <code>/Users/jianan/.openclaw/workspace</code>；本页不加载外部文件，因此离线打开也能完整展示。</p>
+      </header>
+
+      <div class="source-list">
+        <div class="source-item"><span class="status">已读</span><code>agents/sam/career-portfolio/01-叙事框架-高管对话.md</code><button class="copy-button" type="button" data-copy="agents/sam/career-portfolio/01-叙事框架-高管对话.md">复制路径</button></div>
+        <div class="source-item"><span class="status">已读</span><code>agents/sam/career-portfolio/02-口播稿-3分钟版.md</code><button class="copy-button" type="button" data-copy="agents/sam/career-portfolio/02-口播稿-3分钟版.md">复制路径</button></div>
+        <div class="source-item"><span class="status">已读</span><code>repos/cer-global-share-speech/deck/0509_CER_Automation_Deck.html</code><button class="copy-button" type="button" data-copy="repos/cer-global-share-speech/deck/0509_CER_Automation_Deck.html">复制路径</button></div>
+        <div class="source-item"><span class="status">已读</span><code>repos/cer-global-share-speech/materials/CER_LLM_Layer_Architecture_20260807.html</code><button class="copy-button" type="button" data-copy="repos/cer-global-share-speech/materials/CER_LLM_Layer_Architecture_20260807.html">复制路径</button></div>
+        <div class="source-item"><span class="status">已读</span><code>repos/cer-global-share-speech/materials/CER_Stage1_Ordered_Alignment_Ribbon_Architecture_Casebook_20260803.html</code><button class="copy-button" type="button" data-copy="repos/cer-global-share-speech/materials/CER_Stage1_Ordered_Alignment_Ribbon_Architecture_Casebook_20260803.html">复制路径</button></div>
+        <div class="source-item"><span class="status">已读</span><code>repos/cer-global-share-speech/video/scenes/v8/PLAY.html</code><button class="copy-button" type="button" data-copy="repos/cer-global-share-speech/video/scenes/v8/PLAY.html">复制路径</button></div>
+        <div class="source-item"><span class="status">已读</span><code>repos/cer-global-share-speech/ppt/SSME_QT_CER-0618.pptx</code><button class="copy-button" type="button" data-copy="repos/cer-global-share-speech/ppt/SSME_QT_CER-0618.pptx">复制路径</button></div>
+        <div class="source-item"><span class="status">已读</span><code>repos/cer-global-share-speech/speech/20260807_全球平台分享演讲稿_主稿12页.md</code><button class="copy-button" type="button" data-copy="repos/cer-global-share-speech/speech/20260807_全球平台分享演讲稿_主稿12页.md">复制路径</button></div>
+      </div>
+      <div id="copyStatus" class="tiny" role="status" aria-live="polite"></div>
+
+      <div class="source-note" aria-label="来源口径差异">
+        <article class="card card-flat"><b>耗时口径</b><br>本页按任务指定与 career-portfolio 使用“2 天以上 → 约 5 分钟”；0509 历史 Deck 页面写“3 分钟”。</article>
+        <article class="card card-flat"><b>PoC 时间</b><br>本页按任务指定与 0618 PPTX 使用 FY26 Q1；0509 历史 Deck 时间线写 2025 Q3。</article>
+        <article class="card card-flat"><b>Stage 粒度</b><br>高管叙事用 Stage0–5；2026-08 技术材料进一步细化为 Stage00 + Stage0–5。</article>
+        <article class="card card-flat"><b>V8 播放器</b><br>目录有 12 幕场景，但当前 PLAY.html 导航只注册前 7 幕；展示前需确认。</article>
+      </div>
+
+      <aside class="reserve">
+        <h3>⏳ 预留位，待补充</h3>
+        <ul>
+          <li>AIDU Strategy（口述整理，名称待核实）的正式名称、owner、评分规则与 Interface Team。</li>
+          <li>最新 CER Deck、关键节点截图与经确认的最新业务采用状态。</li>
+          <li>RA → AI Product 的正式岗位路径、能力差距与 1 年目标。</li>
+          <li>1v1 后的反馈、承诺事项、下一步 owner 与日期。</li>
+        </ul>
+      </aside>
+    </section>
+  </main>
+
+  <footer>
+    <div class="shell footer-inner">
+      <span>Jianan-Career-Pathway / exec-talk / 内部材料</span>
+      <span>数据有来源 · 边界可说明 · 判断留给人</span>
     </div>
+  </footer>
 
-    <div class="card" style="margin-top:16px">
-      <h3>对话中怎么讲</h3>
-      <p>展示对组织级 AI 战略的理解：从"单点工具"到"组织机制"。CER 项目就是 AIDU 机制里的一个样板（Fast Win 样本）——<span class="pill">自提自落</span><span class="pill">内部人才</span><span class="pill">IT 资源</span></p>
-    </div>
-  </section>
+  <script>
+    (function () {
+      const bar = document.getElementById('progressBar');
+      const updateProgress = function () {
+        const root = document.documentElement;
+        const max = root.scrollHeight - root.clientHeight;
+        const ratio = max > 0 ? root.scrollTop / max : 0;
+        bar.style.width = (ratio * 100).toFixed(2) + '%';
+      };
+      updateProgress();
+      document.addEventListener('scroll', updateProgress, { passive: true });
 
-  <!-- ============ LAYER 3 ============ -->
-  <section class="layer">
-    <div class="layer-head"><span class="layer-num">03</span><span class="layer-title">个人职业发展</span><span class="layer-tag">成长叙事</span></div>
+      document.querySelectorAll('.why-toggle').forEach(function (button) {
+        button.addEventListener('click', function () {
+          const panel = document.getElementById(button.getAttribute('aria-controls'));
+          const expanded = button.getAttribute('aria-expanded') === 'true';
+          button.setAttribute('aria-expanded', String(!expanded));
+          panel.hidden = expanded;
+        });
+      });
 
-    <div class="card" style="margin-bottom:16px">
-      <h3>一句话定位</h3>
-      <p>在 SSME 框架下，做"把 AI 落进真实合规业务"的人——让专家时间从机械准备回到专业判断。</p>
-    </div>
-
-    <div class="grid">
-      <div class="card"><h3>四幕主线</h3><ul>
-        <li>发现痛点：CER 高重复、高合规、强依赖专家</li>
-        <li>做成产品：PoC → V2 → V6 固定链路（Stage0-5 留痕）</li>
-        <li>量化结果：时间压缩 + 质量底线（FN 0%）</li>
-        <li>下一步与组织力：Multi-BU / API 化 / 跨团队协作</li>
-      </ul></div>
-      <div class="card"><h3>三个方法论标签</h3><ul>
-        <li>业务驱动：先有真实痛点 + 专家 know-how，才做 AI</li>
-        <li>边界感：AI 做准备与 Draft，专家做判断与终审</li>
-        <li>工程化落地：自动化发生在可检查、可纠正的流程里</li>
-      </ul></div>
-      <div class="card"><h3>成长线</h3><ul>
-        <li>RA → AIPO 成长线</li>
-        <li>本地 AIDO → 全球 AIDI 视野</li>
-        <li>CER 经验 → 组织级 AI 价值泛化</li>
-      </ul></div>
-    </div>
-
-    <div class="ph">⏳ 3 分钟口播稿已定稿（career-portfolio/02），可嵌入音频/文稿</div>
-  </section>
-
-  <!-- ============ LAYER 4 ============ -->
-  <section class="layer">
-    <div class="layer-head"><span class="layer-num">04</span><span class="layer-title">潜在答疑</span><span class="layer-tag">1v1 提问清单 · 争取拿住时机</span></div>
-
-    <div class="qa"><div class="q">Q1 · 作为老板，您最关注 QT 的什么指标？</div>
-      <div class="why"><b>为什么问：</b>对齐老板的考核视角，了解 QT 的北极星指标，让后续工作叙述贴合老板关心的价值</div></div>
-
-    <div class="qa"><div class="q">Q2 · 您想把 QT 的 AI 自动化往什么方向落地？</div>
-      <div class="why"><b>为什么问：</b>了解 AI 自动化的战略优先级（文档全覆盖？CER/PTR 外扩？），展示我想把 CER 样板复制的意愿</div></div>
-
-    <div class="qa"><div class="q">Q3 · 您认为这个组织里 AI talent 的发展前景和能力建设是怎样的？</div>
-      <div class="why"><b>为什么问：</b>了解组织对 AI 人才的投入与路径，判断自己该往哪个方向积累</div></div>
-
-    <div class="qa"><div class="q">Q4 · 对我这样的年轻人，您有没有指引方向？</div>
-      <div class="why"><b>为什么问：</b>坦诚表达职业发展困惑（RA → AIPO），请老板给方向性建议</div></div>
-
-    <div class="qa"><div class="q">Q5 · 对年轻人有没有什么建议？</div>
-      <div class="why"><b>为什么问：</b>收尾升华，展现成长型心态，给老板留下"可培养"的印象</div></div>
-  </section>
-
-  <div class="footer">Jianan-Career-Pathway/exec-talk/02-高管对话-展示.html · 待 Codex 打磨：素材嵌入 / AIDU 流程动效 / 中英 i18n</div>
-</div>
+      const copyStatus = document.getElementById('copyStatus');
+      document.querySelectorAll('[data-copy]').forEach(function (button) {
+        button.addEventListener('click', async function () {
+          const value = button.getAttribute('data-copy');
+          try {
+            await navigator.clipboard.writeText(value);
+            copyStatus.textContent = '已复制：' + value;
+          } catch (error) {
+            copyStatus.textContent = '浏览器未授权剪贴板，请手动复制上方路径。';
+          }
+        });
+      });
+    }());
+  </script>
 </body>
 </html>
