@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>高管对话 · 四层框架 | Jianan</title>
+<style>
+  :root{
+    --bg:#0B0B0F; --bg2:#12121A; --card:#171722; --card2:#1D1D2B;
+    --line:#2A2A3C; --tx:#F4F4F6; --tx2:#9A9AAE; --tx3:#6E6E85;
+    --acc:#7C6CFF; --acc2:#FF6B8A; --grn:#3DDC97; --amb:#FFC24B;
+    --mono:'JetBrains Mono',ui-monospace,SFMono-Regular,Menlo,monospace;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{background:var(--bg);color:var(--tx);font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;line-height:1.7}
+  .wrap{max-width:960px;margin:0 auto;padding:48px 24px 120px}
+  .kicker{font-family:var(--mono);font-size:13px;letter-spacing:2px;color:var(--acc);text-transform:uppercase}
+  h1{font-size:40px;font-weight:700;letter-spacing:-1px;margin:12px 0 8px}
+  .sub{color:var(--tx2);font-size:16px;margin-bottom:8px}
+  .meta{font-family:var(--mono);font-size:12px;color:var(--tx3);margin-bottom:48px}
+  .layer{margin-bottom:64px}
+  .layer-head{display:flex;align-items:baseline;gap:16px;margin-bottom:20px;padding-bottom:12px;border-bottom:1px solid var(--line)}
+  .layer-num{font-family:var(--mono);font-size:20px;color:var(--acc);font-weight:600}
+  .layer-title{font-size:26px;font-weight:700}
+  .layer-tag{font-size:12px;color:var(--tx3);font-family:var(--mono)}
+  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:20px}
+  .card h3{font-size:15px;font-weight:600;margin-bottom:10px;color:var(--tx)}
+  .card p,.card li{font-size:14px;color:var(--tx2)}
+  .card ul{list-style:none;padding-left:0}
+  .card li{padding:4px 0 4px 18px;position:relative}
+  .card li::before{content:"▸";position:absolute;left:0;color:var(--acc)}
+  .num-row{display:flex;flex-wrap:wrap;gap:12px;margin-top:12px}
+  .num{background:var(--card2);border:1px solid var(--line);border-radius:12px;padding:12px 16px;min-width:130px}
+  .num b{display:block;font-size:22px;font-weight:700;color:var(--acc2)}
+  .num span{font-size:12px;color:var(--tx3)}
+  .timeline{position:relative;padding-left:24px;border-left:2px solid var(--line);margin-left:8px}
+  .tl{position:relative;padding:0 0 22px 18px}
+  .tl::before{content:"";position:absolute;left:-31px;top:6px;width:12px;height:12px;border-radius:50%;background:var(--acc);box-shadow:0 0 0 4px rgba(124,108,255,.2)}
+  .tl .d{font-family:var(--mono);font-size:12px;color:var(--amb)}
+  .tl .t{font-size:14px;font-weight:600;color:var(--tx);margin-top:2px}
+  .tl .x{font-size:13px;color:var(--tx2);margin-top:2px}
+  .flow{display:flex;flex-wrap:wrap;align-items:center;gap:10px;margin:14px 0}
+  .flow .box{background:var(--card2);border:1px solid var(--line);border-radius:12px;padding:10px 14px;font-size:13px;color:var(--tx);text-align:center}
+  .flow .box.hl{border-color:var(--acc);box-shadow:0 0 0 3px rgba(124,108,255,.15)}
+  .flow .arr{color:var(--tx3);font-family:var(--mono)}
+  .split{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+  .pill{display:inline-block;font-size:12px;padding:3px 10px;border-radius:99px;background:rgba(124,108,255,.12);color:var(--acc);font-family:var(--mono);margin-right:8px}
+  .qa{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:20px;margin-bottom:14px}
+  .qa .q{font-size:15px;font-weight:600;color:var(--tx)}
+  .qa .why{font-size:13px;color:var(--tx2);margin-top:6px}
+  .qa .why b{color:var(--amb);font-weight:600}
+  .assets{font-family:var(--mono);font-size:12px;color:var(--tx2)}
+  .assets li{padding:3px 0}
+  .ph{background:repeating-linear-gradient(45deg,var(--card),var(--card) 10px,var(--card2) 10px,var(--card2) 20px);border:1px dashed var(--line);border-radius:12px;padding:24px;text-align:center;color:var(--tx3);font-size:13px;margin-top:12px}
+  .footer{margin-top:64px;padding-top:24px;border-top:1px solid var(--line);font-family:var(--mono);font-size:12px;color:var(--tx3)}
+  @media(max-width:640px){.split{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="kicker">Executive 1:1 · Material</div>
+  <h1>高管对话 · 四层框架</h1>
+  <p class="sub">CER 项目 → AIDU Strategy → 个人职业发展 → 潜在答疑</p>
+  <div class="meta">JIANAN / 2026-08-10 / V1 — 展示版（Codex 打磨中）</div>
+
+  <!-- ============ LAYER 1 ============ -->
+  <section class="layer">
+    <div class="layer-head"><span class="layer-num">01</span><span class="layer-title">CER 项目</span><span class="layer-tag">业务价值证明</span></div>
+
+    <div class="timeline">
+      <div class="tl"><span class="d">FY26 Q1</span><div class="t">PoC 立项</div><div class="x">发现痛点：CER 高重复 / 高合规 / 强依赖专家 · 全公司约 25 份/年 · 单份约 2 个月</div></div>
+      <div class="tl"><span class="d">2026.06</span><div class="t">V2 迭代</div><div class="x">可对比、可复用</div></div>
+      <div class="tl"><span class="d">V6</span><div class="t">固定顺序链路 Stage0-5</div><div class="x">每步留 artifact（CSV/JSON/DOCX），可回验 · 四块能力：提取填充 / Comparison / Difference / Literature Review</div></div>
+      <div class="tl"><span class="d">里程碑</span><div class="t">进入真实业务</div><div class="x">3 份 CT CER 进入 NMPA 递交流程 · 300 MD/年 工作量释放（20 MD × 15 reports）</div></div>
+      <div class="tl"><span class="d">下一步</span><div class="t">泛化与平台化</div><div class="x">Multi-BU（XP/AT 8月）· PDF 多格式 · Analysis Chat · 能力 API 化（4 Phase）</div></div>
+    </div>
+
+    <div class="num-row">
+      <div class="num"><b>2天+ → ~5分钟</b><span>对比表 Draft</span></div>
+      <div class="num"><b>天级 → ~3分钟</b><span>内容生成 / 文献综述</span></div>
+      <div class="num"><b>FN 0%</b><span>真实差异不漏</span></div>
+      <div class="num"><b>FP ~12%</b><span>宁可多提示让专家排除</span></div>
+      <div class="num"><b>100%</b><span>Source Fidelity</span></div>
+    </div>
+
+    <div class="card" style="margin-top:16px">
+      <h3>素材 / 可直接展示的 HTML & PPT</h3>
+      <ul class="assets">
+        <li>deck/0509_CER_Automation_Deck.html（主 Deck，另有 v4/v6）</li>
+        <li>materials/CER_LLM_Layer_Architecture_20260807.html（LLM 层架构）</li>
+        <li>materials/CER_Stage1_Ordered_Alignment_Ribbon_Architecture_Casebook_20260803.html</li>
+        <li>video/scenes/v8/PLAY.html（12 幕视频分镜）· video/scenes/v2/previews/*.png（截图）</li>
+        <li>ppt/SSME_QT_CER-0618.pptx · speech/20260807_全球平台分享演讲稿_主稿12页.md</li>
+      </ul>
+      <div class="ph">⏳ 预留位：最新 PPT / 关键节点截图（Jianan 后续提供后嵌入）</div>
+    </div>
+  </section>
+
+  <!-- ============ LAYER 2 ============ -->
+  <section class="layer">
+    <div class="layer-head"><span class="layer-num">02</span><span class="layer-title">AIDU Strategy</span><span class="layer-tag">组织级战略理解 · 口述整理待核实</span></div>
+
+    <div class="flow">
+      <div class="box">所有 BU<br>× 各 Function</div>
+      <span class="arr">→</span>
+      <div class="box hl">AIDU Interface Team</div>
+      <span class="arr">→</span>
+      <div class="box">深入组织内部<br>挖掘 User Ideas</div>
+      <span class="arr">→</span>
+      <div class="box">评分机制</div>
+      <span class="arr">→</span>
+      <div class="box hl">筛选 · Fast Win<br>更多人才流入</div>
+    </div>
+
+    <div class="split">
+      <div class="card">
+        <h3>落地方式（两条路径）</h3>
+        <ul>
+          <li><b style="color:var(--grn)">自提自落</b> — 你有好 Idea，自己提出、自己落地</li>
+          <li><b style="color:var(--acc2)">自提他落</b> — 你有好 Idea，团队综合力量一起解决</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>资源来源（三个方向）</h3>
+        <ul>
+          <li>① 公司内部已有的人才库</li>
+          <li>② IT 的资源</li>
+          <li>③ 外部供应商的资金与资源</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="card" style="margin-top:16px">
+      <h3>对话中怎么讲</h3>
+      <p>展示对组织级 AI 战略的理解：从"单点工具"到"组织机制"。CER 项目就是 AIDU 机制里的一个样板（Fast Win 样本）——<span class="pill">自提自落</span><span class="pill">内部人才</span><span class="pill">IT 资源</span></p>
+    </div>
+  </section>
+
+  <!-- ============ LAYER 3 ============ -->
+  <section class="layer">
+    <div class="layer-head"><span class="layer-num">03</span><span class="layer-title">个人职业发展</span><span class="layer-tag">成长叙事</span></div>
+
+    <div class="card" style="margin-bottom:16px">
+      <h3>一句话定位</h3>
+      <p>在 SSME 框架下，做"把 AI 落进真实合规业务"的人——让专家时间从机械准备回到专业判断。</p>
+    </div>
+
+    <div class="grid">
+      <div class="card"><h3>四幕主线</h3><ul>
+        <li>发现痛点：CER 高重复、高合规、强依赖专家</li>
+        <li>做成产品：PoC → V2 → V6 固定链路（Stage0-5 留痕）</li>
+        <li>量化结果：时间压缩 + 质量底线（FN 0%）</li>
+        <li>下一步与组织力：Multi-BU / API 化 / 跨团队协作</li>
+      </ul></div>
+      <div class="card"><h3>三个方法论标签</h3><ul>
+        <li>业务驱动：先有真实痛点 + 专家 know-how，才做 AI</li>
+        <li>边界感：AI 做准备与 Draft，专家做判断与终审</li>
+        <li>工程化落地：自动化发生在可检查、可纠正的流程里</li>
+      </ul></div>
+      <div class="card"><h3>成长线</h3><ul>
+        <li>RA → AIPO 成长线</li>
+        <li>本地 AIDO → 全球 AIDI 视野</li>
+        <li>CER 经验 → 组织级 AI 价值泛化</li>
+      </ul></div>
+    </div>
+
+    <div class="ph">⏳ 3 分钟口播稿已定稿（career-portfolio/02），可嵌入音频/文稿</div>
+  </section>
+
+  <!-- ============ LAYER 4 ============ -->
+  <section class="layer">
+    <div class="layer-head"><span class="layer-num">04</span><span class="layer-title">潜在答疑</span><span class="layer-tag">1v1 提问清单 · 争取拿住时机</span></div>
+
+    <div class="qa"><div class="q">Q1 · 作为老板，您最关注 QT 的什么指标？</div>
+      <div class="why"><b>为什么问：</b>对齐老板的考核视角，了解 QT 的北极星指标，让后续工作叙述贴合老板关心的价值</div></div>
+
+    <div class="qa"><div class="q">Q2 · 您想把 QT 的 AI 自动化往什么方向落地？</div>
+      <div class="why"><b>为什么问：</b>了解 AI 自动化的战略优先级（文档全覆盖？CER/PTR 外扩？），展示我想把 CER 样板复制的意愿</div></div>
+
+    <div class="qa"><div class="q">Q3 · 您认为这个组织里 AI talent 的发展前景和能力建设是怎样的？</div>
+      <div class="why"><b>为什么问：</b>了解组织对 AI 人才的投入与路径，判断自己该往哪个方向积累</div></div>
+
+    <div class="qa"><div class="q">Q4 · 对我这样的年轻人，您有没有指引方向？</div>
+      <div class="why"><b>为什么问：</b>坦诚表达职业发展困惑（RA → AIPO），请老板给方向性建议</div></div>
+
+    <div class="qa"><div class="q">Q5 · 对年轻人有没有什么建议？</div>
+      <div class="why"><b>为什么问：</b>收尾升华，展现成长型心态，给老板留下"可培养"的印象</div></div>
+  </section>
+
+  <div class="footer">Jianan-Career-Pathway/exec-talk/02-高管对话-展示.html · 待 Codex 打磨：素材嵌入 / AIDU 流程动效 / 中英 i18n</div>
+</div>
+</body>
+</html>
